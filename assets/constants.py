@@ -1,0 +1,10 @@
+WIDTH = 256
+HEIGHT = 256
+mario_start_x=192
+luigi_start_x= 72
+boss_pos1_x,boss_pos1_y =8,232
+boss_pos2_x,boss_pos2_y  =232,184
+#truck_pos_x,truck_pos_y =24,184
+floors=[216,208,184,168,152,136]
+j=1
+i=0
