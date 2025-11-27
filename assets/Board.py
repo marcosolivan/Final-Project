@@ -1,7 +1,7 @@
 import pyxel
 
 from constants import WIDTH, HEIGHT
-
+from Characters import Mario, Luigi
 
 class Game:
     def __init__(self):
@@ -19,8 +19,12 @@ class Game:
     def draw(self):
         pyxel.cls(0)
 
-        pyxel.blt(0, 0, 1, 0, 0, 256, 256)
+        pyxel.blt(0, 0, 1, 0, 0, WIDTH, HEIGHT)
+        Mario.draw()
+        Luigi.draw()
+        
 
-        pyxel.blt(0, 0, 0, 32, 48, 16, 16, 0)
+
+
 
 Game()
