@@ -1,6 +1,6 @@
 import pyxel
 from assets.constants import floors, i, j, mario_start_x, luigi_start_x, boss_pos1_x, boss_pos1_y, boss_pos2_x, \
-    boss_pos2_y, mario_sprite_x, mario_sprite_y, luigi_sprite_x, luigi_sprite_y
+    boss_pos2_y, mario_sprite_x, mario_sprite_y, luigi_sprite_x, luigi_sprite_y,boss_sprite1_x, boss_sprite1_y
 
 class Characters:
     def __init__(self,name,x,y,sprite_x,sprite_y):
@@ -114,5 +114,5 @@ class Truck:
 
 Mario = Characters("Mario",mario_start_x,floors[0],mario_sprite_x,mario_sprite_y)
 Luigi = Characters("Luigi",luigi_start_x,floors[1],luigi_sprite_x,luigi_sprite_y)
-
+Boss1=  Characters("Boss", boss_pos1_x,boss_pos1_y,boss_sprite1_x,boss_sprite1_y )
 

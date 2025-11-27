@@ -10,4 +10,5 @@ j=1
 i=0
 mario_sprite_x, mario_sprite_y =32,48
 luigi_sprite_x, luigi_sprite_y =16,48
-boss_sprite_x, boss_sprite_y =32,48
+boss_sprite1_x, boss_sprite1_y =32,48
+boss_sprite2_x, boss_sprite2_y =48,0

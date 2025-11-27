@@ -22,9 +22,5 @@ class Game:
         pyxel.blt(0, 0, 1, 0, 0, WIDTH, HEIGHT)
         Mario.draw()
         Luigi.draw()
-        
-
-
-
 
 Game()
