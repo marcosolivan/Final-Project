@@ -1,6 +1,6 @@
 import pyxel
-from assets.constants import floors, i, j, mario_start_x, luigi_start_x, boss_pos1_x, boss_pos1_y, boss_pos2_x, \
-    boss_pos2_y, mario_sprite_x, mario_sprite_y, luigi_sprite_x, luigi_sprite_y,boss_sprite1_x, boss_sprite1_y
+from assets.constants import floors, mario_start_x, luigi_start_x, boss_pos1_x, boss_pos1_y, boss_pos2_x, \
+    boss_pos2_y, mario_sprite_x, mario_sprite_y, luigi_sprite_x, luigi_sprite_y,boss_sprite1_x, boss_sprite1_y,boss_sprite2_x, boss_sprite2_y
 
 class Characters:
     def __init__(self,name,x,y,sprite_x,sprite_y):
@@ -9,8 +9,6 @@ class Characters:
         self.y = y
         self.sprite_x = sprite_x
         self.sprite_y = sprite_y
-
-
 
     def draw(self):
         pyxel.blt(self.x,self.y,0,self.sprite_x,self.sprite_y,16,16)
@@ -114,5 +112,5 @@ class Truck:
 
 Mario = Characters("Mario",mario_start_x,floors[0],mario_sprite_x,mario_sprite_y)
 Luigi = Characters("Luigi",luigi_start_x,floors[1],luigi_sprite_x,luigi_sprite_y)
-Boss1=  Characters("Boss", boss_pos1_x,boss_pos1_y,boss_sprite1_x,boss_sprite1_y )
-
+Boss1=  Characters("Boss", boss_pos1_x,boss_pos1_y,boss_sprite1_x,boss_sprite1_y)
+Boss2= Characters("Boss",boss_pos2_x,boss_pos2_y,boss_sprite2_x,boss_sprite2_y)
