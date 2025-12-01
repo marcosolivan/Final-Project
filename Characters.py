@@ -1,6 +1,8 @@
 import pyxel
-from assets.constants import floors, mario_start_x, luigi_start_x, boss_pos1_x, boss_pos1_y, boss_pos2_x, \
-    boss_pos2_y, mario_sprite_x, mario_sprite_y, luigi_sprite_x, luigi_sprite_y,boss_sprite1_x, boss_sprite1_y,boss_sprite2_x, boss_sprite2_y
+from assets.constants import (floors, mario_start_x, luigi_start_x, boss_pos1_x, boss_pos1_y, boss_pos2_x, \
+boss_pos2_y, mario_sprite_x, mario_sprite_y, luigi_sprite_x, luigi_sprite_y,boss_sprite1_x, boss_sprite1_y,boss_sprite2_x,
+boss_sprite2_y, conveyor_speed)
+
 
 class Characters:
     def __init__(self,name,x,y,sprite_x,sprite_y):
@@ -9,6 +11,7 @@ class Characters:
         self.y = y
         self.sprite_x = sprite_x
         self.sprite_y = sprite_y
+
 
     def draw(self):
         pyxel.blt(self.x,self.y,0,self.sprite_x,self.sprite_y,16,16)
@@ -67,9 +70,10 @@ class Characters:
         self.__sprite_y = new_sprite_y
 
 class Package:
-    def __init__(self,x,y):
+    def __init__(self,x,y,floor):
         self.x=x
         self.y=y
+        self.floor = floor
     @property
     def x(self):
         return self.__x
@@ -87,6 +91,16 @@ class Package:
         if not isinstance( new_y, int ):
             raise TypeError("y must be a number")
         self.__y = new_y
+
+    @property
+    def floor(self):
+        return self.__floor
+    @floor.setter
+    def floor(self,new_floor):
+        if not isinstance( new_floor, int ):
+            raise TypeError("floor must be a number")
+        self.__floor = new_floor
+
 class Truck:
     def __init__(self,x,y):
         self.x=x
@@ -109,8 +123,86 @@ class Truck:
             raise TypeError("y must be a number")
         self.__y = new_y
 
+class Conveyor:
+    def __init__(self,y,floor,direction, width):
+        self.y=y
+        self.floor=floor
+        self.speed = conveyor_speed
+        self.direction = direction
+        self.width = width
+
+    def update(self):
+        pass
+
+    @property
+    def y(self):
+        return self.__y
+    @y.setter
+    def y(self,new_y):
+        if not isinstance( new_y, int ):
+            raise TypeError("y must be a number")
+        self.__y = new_y
+
+    @property
+    def floor(self):
+        return self.__floor
+    @floor.setter
+    def floor(self,new_floor):
+        if not isinstance( new_floor, int ):
+            raise TypeError("floor must be a number")
+        self.__floor = new_floor
+
+    @property
+    def direction(self):
+        return self.__direction
+    @direction.setter
+    def direction(self,new_direction):
+        if not isinstance( new_direction, int):
+            raise TypeError("direction must be an integer between 1 and -1")
+        if new_direction < -1 or new_direction > 1:
+            raise ValueError("direction must be between 1 and -1")
+        self.__direction = new_direction
+
+    @property
+    def conveyor_speed(self):
+        return self.__speed
+    @conveyor_speed.setter
+    def conveyor_speed(self,new_conveyor_speed):
+        if not isinstance( new_conveyor_speed, int ):
+            raise TypeError("speed must be a number")
+        self.__speed = new_conveyor_speed
+
+    @property
+    def width(self):
+        return self.__width
+    @width.setter
+    def width(self,new_width):
+        if not isinstance( new_width, int ):
+            raise TypeError("width must be a number")
+        self.__width = new_width
+
+    @property
+    def name(self):
+        return self.__direction
+    @name.setter
+    def name(self,new_direction):
+        if not isinstance( new_direction, int ):
+            raise TypeError("direction must be a number")
+        elif new_direction < -1 or new_direction > 1:
+            raise ValueError("direction must be between 1 and -1")
+        self.__direction = new_direction
+
+
 
 Mario = Characters("Mario",mario_start_x,floors[0],mario_sprite_x,mario_sprite_y)
 Luigi = Characters("Luigi",luigi_start_x,floors[1],luigi_sprite_x,luigi_sprite_y)
 Boss1=  Characters("Boss", boss_pos1_x,boss_pos1_y,boss_sprite1_x,boss_sprite1_y)
 Boss2= Characters("Boss",boss_pos2_x,boss_pos2_y,boss_sprite2_x,boss_sprite2_y)
+
+Conveyor0 = Conveyor(floors[0],0,-1,88)
+Conveyor1 = Conveyor(floors[1],1,1,88)
+Conveyor2 = Conveyor(floors[2],2,-1,88)
+Conveyor3 = Conveyor(floors[3],3,1,104)
+Conveyor4 = Conveyor(floors[4],4,1,88)
+Conveyor5= Conveyor(floors[5],5,1,88)
+Conveyor_start=Conveyor(floors[0],1,1,24)
