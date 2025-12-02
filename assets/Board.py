@@ -70,6 +70,7 @@ class Game:
 
         #PACKAGE MOVEMENT
         for element in self.packages:
+            #FROM START TO FIRST CONVEYOR
             if element.current_conveyor == 0 and element.distance > -conveyor_start_width:
                 element.distance += conveyor_speed*self.conveyors[element.current_conveyor].direction
                 element.x += conveyor_speed*self.conveyors[element.current_conveyor].direction
@@ -77,19 +78,49 @@ class Game:
                     element.current_conveyor = 1
                     element.x = package_edge_right
                     element.distance = 0
-            elif element.current_conveyor == 1 and element.distance > -conveyor_width:
+            #FROM FIRST CONVEYOR TO SECOND
+            if element.current_conveyor == 1 and element.distance > -conveyor_width:
                 element.distance+= conveyor_speed*-self.conveyors[element.current_conveyor].direction
                 element.x += conveyor_speed*-self.conveyors[element.current_conveyor].direction
-                if Luigi.y == floors[1] and element.current_conveyor == 1 and element.distance==-88:
+                if Luigi.y == floors[1] and element.current_conveyor == 1  and element.distance==-conveyor_width:
                     element.y = conveyor_floors[element.current_conveyor]
-                    element.current_conveyor = 2
+                    element.current_conveyor += 1
                     element.distance = 0
-            elif element.current_conveyor == 2 and element.distance > conveyor_width:
+            #FROM SECOND TO THIRD CONVEYOR
+            if element.current_conveyor == 2 and element.distance > -conveyor_width:
+                element.distance+= conveyor_speed*-self.conveyors[element.current_conveyor].direction
+                element.x += conveyor_speed*-self.conveyors[element.current_conveyor].direction
+                if Mario.y == floors[2] and element.current_conveyor == 2 and element.distance==conveyor_width:
+                    element.y = conveyor_floors[element.current_conveyor]
+                    element.current_conveyor +=1
+                    element.distance = 0
+
+            #FROM THIRD TO FOURTH
+            if element.current_conveyor == 3 and element.distance > -conveyor_width:
                 element.distance+= conveyor_speed*self.conveyors[element.current_conveyor].direction
                 element.x += conveyor_speed*self.conveyors[element.current_conveyor].direction
-                if Mario.y == floors[2] and element.current_conveyor == 2:
+                if Luigi.y == floors[3] and element.current_conveyor == 3 and element.distance==-conveyor_width:
                     element.y = conveyor_floors[element.current_conveyor]
-                    element.current_conveyor = 3
+                    element.current_conveyor += 1
+                    element.distance = 0
+
+            #FROM FORTH TO FIFTH
+            if element.current_conveyor == 4 and element.distance > -conveyor_width:
+                element.distance+=conveyor_speed*-self.conveyors[element.current_conveyor].direction
+                element.x += conveyor_speed*self.conveyors[element.current_conveyor].direction
+                if Mario.y == floors[4] and element.current_conveyor == 4 and element.distance==-conveyor_width:
+                    element.y = conveyor_floors[element.current_conveyor]
+                    element.current_conveyor += 1
+                    element.distance = 0
+
+            #FROM FIFTH TO TRUCK
+            if element.current_conveyor == 5 and element.distance > -conveyor_width:
+                element.distance+=conveyor_speed*-self.conveyors[element.current_conveyor].direction
+                element.x += conveyor_speed*-conveyor_speed
+
+
+
+
 
 
 
