@@ -6,6 +6,9 @@ class Package:
         self.y = y
         self.sprite_x = sprite_x
         self.sprite_y = sprite_y
+        self.distance = 0
+        self.current_conveyor = 0
+
 
     def draw(self):
         pyxel.blt(self.x,self.y,0,self.sprite_x, self.sprite_y, 16,8,0)
@@ -46,6 +49,16 @@ class Package:
         if not isinstance( new_sprite_y, int ):
             raise TypeError("y must be a number")
         self.__sprite_y = new_sprite_y
+
+    @property
+    def distance(self):
+        return self.__distance
+    @distance.setter
+    def distance(self, new_distance):
+        if not isinstance( new_distance, int ):
+            raise TypeError("x must be a number")
+        self.__distance = new_distance
+
 
 
 

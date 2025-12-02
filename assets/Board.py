@@ -8,7 +8,8 @@ Conveyor4, Conveyor5)
 from Package import Package
 from constants import (package_start_x,package_start_y,package_edge_right,package_edge_left,package_sprite1_x,
 package_sprite1_y,package_sprite2_x,package_sprite2_y,package_sprite3_x,package_sprite3_y,package_sprite4_x,
-package_sprite4_y,package_sprite5_x,package_sprite5_y,package_sprite6_x,package_sprite6_y,conveyor_speed)
+package_sprite4_y,package_sprite5_x,package_sprite5_y,package_sprite6_x,package_sprite6_y,conveyor_speed, conveyor_floors,
+conveyor_width,conveyor_start_width)
 #These objects belong to the class Character. Further explination in Characters.py
 class Game:
     def __init__(self):
@@ -63,11 +64,38 @@ class Game:
 
         #PACKAGE SPAWNER
         self.spawner_time+=1
-        if self.spawner_time>30:
+        if self.spawner_time>30 and len(self.packages) < 4:
             self.package_spawn()
             self.spawner_time=0
 
         #PACKAGE MOVEMENT
+        for element in self.packages:
+            if element.current_conveyor == 0 and element.distance > -conveyor_start_width:
+                element.distance += conveyor_speed*self.conveyors[element.current_conveyor].direction
+                element.x += conveyor_speed*self.conveyors[element.current_conveyor].direction
+                if Mario.y == floors[0] and element.current_conveyor == 0 and element.distance==-40:
+                    element.current_conveyor = 1
+                    element.x = package_edge_right
+                    element.distance = 0
+            elif element.current_conveyor == 1 and element.distance > -conveyor_width:
+                element.distance+= conveyor_speed*-self.conveyors[element.current_conveyor].direction
+                element.x += conveyor_speed*-self.conveyors[element.current_conveyor].direction
+                if Luigi.y == floors[1] and element.current_conveyor == 1 and element.distance==-88:
+                    element.y = conveyor_floors[element.current_conveyor]
+                    element.current_conveyor = 2
+                    element.distance = 0
+            elif element.current_conveyor == 2 and element.distance > conveyor_width:
+                element.distance+= conveyor_speed*self.conveyors[element.current_conveyor].direction
+                element.x += conveyor_speed*self.conveyors[element.current_conveyor].direction
+                if Mario.y == floors[2] and element.current_conveyor == 2:
+                    element.y = conveyor_floors[element.current_conveyor]
+                    element.current_conveyor = 3
+
+
+
+
+
+
 
 
 
@@ -90,10 +118,9 @@ class Game:
 
 
     def package_spawn(self):
-        first_conveyor = self.conveyors[0]
         new_package = Package(package_start_x,package_start_y,package_sprite1_x,package_sprite1_y)
-        new_package.conveyor_index = 0
         self.packages.append(new_package)
+
 
 
 Game()

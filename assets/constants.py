@@ -15,12 +15,14 @@ boss_sprite2_x, boss_sprite2_y =48,32
 boss_sprite1_x, boss_sprite1_y =48,0
 
 package_start_x,package_start_y = 244,210
-package_edge_right,package_edge_left =184,88
+package_edge_right,package_edge_left =178,102
 package_sprite1_x,package_sprite1_y =32,64
 package_sprite2_x,package_sprite2_y =48,64
 package_sprite3_x,package_sprite3_y =32,72
 package_sprite4_x,package_sprite4_y =48,72
 package_sprite5_x,package_sprite5_y =32,80
 package_sprite6_x,package_sprite6_y =48,80
-
-conveyor_speed=8
+conveyor_floors = [208,194,178,162,146]
+conveyor_width=104
+conveyor_start_width=40
+conveyor_speed=1
