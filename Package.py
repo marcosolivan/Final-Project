@@ -1,5 +1,6 @@
 import pyxel
 
+
 class Package:
     def __init__(self,x,y,sprite_x,sprite_y):
         self.x = x
@@ -8,10 +9,15 @@ class Package:
         self.sprite_y = sprite_y
         self.distance = 0
         self.current_conveyor = 0
+        self.visible = True
+        self.inside_column=False
+        self.evolution_sprite =0
 
 
     def draw(self):
-        pyxel.blt(self.x,self.y,0,self.sprite_x, self.sprite_y, 16,8,0)
+        if self.visible:
+            pyxel.blt(self.x,self.y,0,self.sprite_x, self.sprite_y, 16,8,0)
+
 
     @property
     def x(self):
@@ -59,9 +65,16 @@ class Package:
             raise TypeError("x must be a number")
         self.__distance = new_distance
 
+    def change_sprite(self):
+        from assets.constants import PACKAGE_SPRITES
 
+        # Advance while we are not in the maximum level
+        if self.evolution_sprite < len(PACKAGE_SPRITES) - 1:
+            self.evolution_sprite += 1
 
-
+        new_x, new_y = PACKAGE_SPRITES[self.evolution_sprite]
+        self.sprite_x = new_x
+        self.sprite_y = new_y
 
 
 

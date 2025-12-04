@@ -22,8 +22,18 @@ package_sprite3_x,package_sprite3_y =32,72
 package_sprite4_x,package_sprite4_y =48,72
 package_sprite5_x,package_sprite5_y =32,80
 package_sprite6_x,package_sprite6_y =48,80
+PACKAGE_SPRITES = [
+    (package_sprite1_x, package_sprite1_y),  # Level 0
+    (package_sprite2_x, package_sprite2_y),  # Level 1
+    (package_sprite3_x, package_sprite3_y),  # Level 2
+    (package_sprite4_x, package_sprite4_y),  # Level 3
+    (package_sprite5_x, package_sprite5_y),  # Level 4
+    (package_sprite6_x, package_sprite6_y),  # Level 5
+]
+
+column_right, column_left =140,120
 package_fail_x,package_fail_y =16,160
-conveyor_floors = [208,194,178,162,144]
+conveyor_floors = [208,194,178,162,146]
 conveyor_width=104
 conveyor_start_width=40
 conveyor_speed=1

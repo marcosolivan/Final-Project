@@ -14,7 +14,7 @@ from Package import Package
 from constants import (package_start_x,package_start_y,package_edge_right,package_edge_left,package_sprite1_x,
 package_sprite1_y,package_sprite2_x,package_sprite2_y,package_sprite3_x,package_sprite3_y,package_sprite4_x,
 package_sprite4_y,package_sprite5_x,package_sprite5_y,package_sprite6_x,package_sprite6_y,package_fail_x,package_fail_y,
-conveyor_speed, conveyor_floors,conveyor_width,conveyor_start_width)
+conveyor_speed, conveyor_floors,conveyor_width,conveyor_start_width,column_left,column_right)
 
 #These objects belong to the class Character. Further explination in Characters.py
 
@@ -83,6 +83,8 @@ class Game:
             if element.current_conveyor == 0 and element.distance > -conveyor_start_width:
                 element.distance += conveyor_speed*self.conveyors[element.current_conveyor].direction
                 element.x += conveyor_speed*self.conveyors[element.current_conveyor].direction
+
+
                 if Mario.y == floors[0] and element.current_conveyor == 0 and element.distance==-40:
                     element.current_conveyor = 1
                     element.x = package_edge_right
@@ -94,6 +96,7 @@ class Game:
                         "timer": 20,  # 20 frames ~ 0.6 s
                     })
                     self.packages.remove(element)
+
 
             #FROM FIRST CONVEYOR TO SECOND
             if element.current_conveyor == 1 and element.distance > -conveyor_width:
@@ -110,6 +113,20 @@ class Game:
                         "timer": 20,  # 20 frames ~ 0.6 s
                     })
                     self.packages.remove(element)
+                was_inside = element.inside_column
+                inside_now = column_left <= element.x <= column_right
+
+                if inside_now:
+                    # Lo ocultamos mientras cruza
+                    element.inside_column = True
+                    element.visible = False
+
+                elif was_inside and not inside_now:
+                    # Ha salido de la columna → reaparece y sube de nivel
+                    element.inside_column = False
+                    element.visible = True
+                    element.change_sprite()
+
 
 
             #FROM SECOND TO THIRD CONVEYOR
@@ -127,6 +144,20 @@ class Game:
                         "timer": 20,  # 20 frames ~ 0.6 s
                     })
                     self.packages.remove(element)
+                was_inside = element.inside_column
+                inside_now = column_left <= element.x <= column_right
+
+                if inside_now:
+                    # Lo ocultamos mientras cruza
+                    element.inside_column = True
+                    element.visible = False
+
+                elif was_inside and not inside_now:
+                    # Ha salido de la columna → reaparece y sube de nivel
+                    element.inside_column = False
+                    element.visible = True
+                    element.change_sprite()
+
 
             #FROM THIRD TO FOURTH
             if element.current_conveyor == 3 and element.distance > -conveyor_width:
@@ -143,6 +174,19 @@ class Game:
                         "timer": 20,  # 20 frames ~ 0.6 s
                     })
                     self.packages.remove(element)
+                was_inside = element.inside_column
+                inside_now = column_left <= element.x <= column_right
+
+                if inside_now:
+                    # Lo ocultamos mientras cruza
+                    element.inside_column = True
+                    element.visible = False
+
+                elif was_inside and not inside_now:
+                    # Ha salido de la columna → reaparece y sube de nivel
+                    element.inside_column = False
+                    element.visible = True
+                    element.change_sprite()
 
 
             #FROM FORTH TO FIFTH
@@ -160,6 +204,21 @@ class Game:
                         "timer": 20,  # 20 frames ~ 0.6 s
                     })
                     self.packages.remove(element)
+                was_inside = element.inside_column
+                inside_now = column_left <= element.x <= column_right
+
+                if inside_now:
+                    # Lo ocultamos mientras cruza
+                    element.inside_column = True
+                    element.visible = False
+
+                elif was_inside and not inside_now:
+                    # Ha salido de la columna → reaparece y sube de nivel
+                    element.inside_column = False
+                    element.visible = True
+                    element.change_sprite()
+
+
 
             #FROM FIFTH TO TRUCK
             if element.current_conveyor == 5 and element.distance > -conveyor_width:
@@ -175,10 +234,19 @@ class Game:
                         "timer": 20,  # 20 frames ~ 0.6 s
                     })
                     self.packages.remove(element)
+                was_inside = element.inside_column
+                inside_now = column_left <= element.x <= column_right
 
+                if inside_now:
+                    # Lo ocultamos mientras cruza
+                    element.inside_column = True
+                    element.visible = False
 
-
-
+                elif was_inside and not inside_now:
+                    # Ha salido de la columna → reaparece y sube de nivel
+                    element.inside_column = False
+                    element.visible = True
+                    element.change_sprite()
 
 
         Mario.update()

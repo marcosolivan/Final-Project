@@ -17,7 +17,7 @@ class Characters:
         pyxel.blt(self.x,self.y,0,self.sprite_x,self.sprite_y,16,16)
 
     def update(self):
-        pass
+       pass
 
     @property
     def name(self):

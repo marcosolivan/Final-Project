@@ -1,7 +1,5 @@
 import pyxel
 
-
-
 class Truck:
     def __init__(self,sprite_x,sprite_y):
         self.package_num = 0
