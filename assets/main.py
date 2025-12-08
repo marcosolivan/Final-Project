@@ -1,2 +1,2 @@
-from Board import Game
+from board import Game
 Game()
